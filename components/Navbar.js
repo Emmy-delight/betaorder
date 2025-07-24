@@ -16,7 +16,7 @@ export default function Navbar() {
                 <p className="text-blue-500 font-bold text-2xl">BetaOrder</p>
                 <ul className="hidden md:flex gap-10 font-semibold cursor-pointer">
                     <li><Link href="#">Add-order</Link></li>
-                    <li><Link href="#">Order-list</Link></li>
+                    <li><Link href="#">Orders</Link></li>
                     <li><Link href="#">Profile</Link></li>
                 </ul>
                 <Link href="#"><p className="hidden md:block h-[30px] w-[80px] bg-blue-400 text-white text-center rounded-lg ">SignUp</p>
