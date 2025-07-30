@@ -1,8 +1,10 @@
-import { signIn } from "@/auth";
+import { auth, signIn } from "@/auth";
 import Link from "next/link";
 import { FaGoogle } from "react-icons/fa";
 
-export default function SignIn () {
+export default async function SignIn () {
+  const session = await auth();
+  console.log(session)
     return (
         <main className="min-h-screen flex justify-center  bg-gray-50 py-8 px-2">
           <article>

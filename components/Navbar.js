@@ -9,17 +9,16 @@ export default function Navbar() {
     const toggleMenu = ()=>{
         setMenuOpen(!menuOpen)
     }
-
     return (
         <main className="bg-white shadow shadow-gray-300 w-full">
             <div className="flex justify-between h-[50px] pt-3 px-5">
                 <p className="text-blue-500 font-bold text-2xl">BetaOrder</p>
                 <ul className="hidden md:flex gap-10 font-semibold cursor-pointer">
-                    <li><Link href="#">Add-order</Link></li>
-                    <li><Link href="#">Orders</Link></li>
-                    <li><Link href="#">Profile</Link></li>
+                    <li><Link href="/dashboard/add-orders">Add-order</Link></li>
+                    <li><Link href="/dashboard/order">Orders</Link></li>
+                    <li><Link href="/dashboard/profile">Profile</Link></li>
                 </ul>
-                <Link href="#"><p className="hidden md:block h-[30px] w-[80px] bg-blue-400 text-white text-center rounded-lg ">SignUp</p>
+                <Link href="/auth/signin"><p className="hidden md:block h-[30px] w-[80px] bg-blue-400 text-white text-center rounded-lg ">SignUp</p>
                 </Link>
                  <div className="block py-2 md:hidden">
                     <LiaGripLinesSolid className="text-2xl text-blue-500"
@@ -29,11 +28,11 @@ export default function Navbar() {
             {menuOpen && (
             <div className="px-5 pb-1 md:hidden">
                 <ul>
-                    <li><Link href="#">Add-order</Link></li>
-                    <li><Link href="#">Order-list</Link></li>
-                    <li><Link href="#">Profile</Link></li>
+                    <li><Link href="/dashboard/add-order">Add-order</Link></li>
+                    <li><Link href="/dashboard/orders">Order-list</Link></li>
+                    <li><Link href="/dashboard/profile">Profile</Link></li>
                 </ul>
-                <Link href="#"><p className="h-[30px] w-[80px] bg-blue-400 text-white text-center rounded-lg md:hidden ">SignUp</p>
+                <Link href="/auth/signin"><p className="h-[30px] w-[80px] bg-blue-400 text-white text-center rounded-lg md:hidden ">SignUp</p>
                 </Link> 
             </div>
             )}
