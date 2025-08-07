@@ -1,6 +1,10 @@
    "use client"
-import { Button, Card, CardContent, CardHeader, TextField } from "@mui/material";
+import { db } from "@/config/firebase.config";
+import { Button, Card, CardContent, CardHeader, CircularProgress, TextField } from "@mui/material";
+import { addDoc, collection } from "firebase/firestore";
 import { useFormik } from "formik";
+import { useSession } from "next-auth/react";
+import { useState } from "react";
 import * as yup from "yup";
 
 const schema = yup.object().shape({
@@ -9,8 +13,10 @@ const schema = yup.object().shape({
     amount: yup.number().required("Order must exceed 1000").min(1000),
     notes:  yup.string().required().min(10),
 })
-
-export default function AddOrder () {
+export default function AddOrder ({userId}) {
+    const [opProgess,setOpProgess] = useState(false)
+     const {data: session} = useSession();
+     
     const {handleSubmit,handleChange, values,touched,errors} = useFormik({
         initialValues: {
             customername: "",
@@ -18,8 +24,23 @@ export default function AddOrder () {
             amount: "",
             notes: ""
         },
-        onSubmit: () => {
-            alert("form submitted")
+        onSubmit: async () => {
+            await addDoc(collection(db,"orders"),{
+                user: session?.user?.id,
+                customername: values.customername,
+                order: values.order,
+                amount: values.amount,
+                notes: values.notes,
+                timecreated: new Date().getTime(),
+            }).then(()=>{
+                setOpProgess(false)
+                alert("You just made an Order")
+            })
+            .catch(e =>{
+                setOpProgess(false)
+                console.error(e)
+                alert("Your order was not sucessful")
+            })
         },
         validationSchema:schema
     })
@@ -80,7 +101,10 @@ export default function AddOrder () {
                           />
                           {touched.notes && errors.notes ? <span className="text-xs text-red-500">{errors.notes}</span> : null}
                        </div>
-                       <Button type="submit" variant="contained" className="rounded">Place Order</Button>
+                       <div className="flex items-center gap-1">
+                       <Button type="submit" variant="contained" className="rounded w-full">Place Order</Button>
+                       <CircularProgress style={{display:!opProgess ? "none" : "flex" }}/>
+                       </div>
                     </form>
                 </CardContent>
 

@@ -14,8 +14,8 @@ export default function Navbar() {
             <div className="flex justify-between h-[50px] pt-3 px-5">
                 <p className="text-blue-500 font-bold text-2xl">BetaOrder</p>
                 <ul className="hidden md:flex gap-10 font-semibold cursor-pointer">
-                    <li><Link href="/dashboard/add-orders">Add-order</Link></li>
-                    <li><Link href="/dashboard/order">Orders</Link></li>
+                    <li><Link href="/dashboard/add-order">Add-order</Link></li>
+                    <li><Link href="/dashboard/orders">Orders</Link></li>
                     <li><Link href="/dashboard/profile">Profile</Link></li>
                 </ul>
                 <Link href="/auth/signin"><p className="hidden md:block h-[30px] w-[80px] bg-blue-400 text-white text-center rounded-lg ">SignUp</p>
