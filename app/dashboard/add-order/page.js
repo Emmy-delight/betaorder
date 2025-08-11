@@ -24,7 +24,7 @@ export default function AddOrder ({userId}) {
             amount: "",
             notes: ""
         },
-        onSubmit: async () => {
+        onSubmit: async (values, {resetForm}) => {
             await addDoc(collection(db,"orders"),{
                 user: session?.user?.id,
                 customername: values.customername,
@@ -35,6 +35,9 @@ export default function AddOrder ({userId}) {
             }).then(()=>{
                 setOpProgess(false)
                 alert("You just made an Order")
+
+                
+                resetForm();
             })
             .catch(e =>{
                 setOpProgess(false)
