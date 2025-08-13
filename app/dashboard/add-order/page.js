@@ -25,6 +25,7 @@ export default function AddOrder ({userId}) {
             notes: ""
         },
         onSubmit: async (values, {resetForm}) => {
+               setOpProgess(true);
             await addDoc(collection(db,"orders"),{
                 user: session?.user?.id,
                 customername: values.customername,
@@ -35,8 +36,6 @@ export default function AddOrder ({userId}) {
             }).then(()=>{
                 setOpProgess(false)
                 alert("You just made an Order")
-
-                
                 resetForm();
             })
             .catch(e =>{
@@ -110,7 +109,6 @@ export default function AddOrder ({userId}) {
                        </div>
                     </form>
                 </CardContent>
-
              </Card>
          </main>    
     )
