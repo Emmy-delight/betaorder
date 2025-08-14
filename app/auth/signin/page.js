@@ -1,10 +1,13 @@
 import { auth, signIn } from "@/auth";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { FaGoogle } from "react-icons/fa";
 
 export default async function SignIn () {
   const session = await auth();
-  console.log(session)
+   if (session) {
+    redirect("/dashboard/add-order");
+   }
     return (
         <main className="min-h-screen flex justify-center  bg-gray-50 py-8 px-2">
           <article>
